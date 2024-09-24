@@ -17,9 +17,9 @@
 //     =====`-.____`.___ \_____/___.-`___.-'=====
 //                       `=---='
 //     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-const server = require('./src/app.js');
-const { sequelize } = require('./src/db.js');
-const PORT = 3001
+const server = require("./src/app.js");
+const { sequelize } = require("./src/db.js");
+const PORT = process.env.PORT || 3001;
 
 // Syncing all the models at once.
 // sequelize.sync({ force: true }).then(() => {
@@ -30,10 +30,11 @@ const PORT = 3001
 // });
 
 server.listen(PORT, async () => {
-  try {
-    await sequelize.sync({force:false})
-    console.log(`Server on listening http://localhost:${PORT}`)
-  } catch (error) {
-    console.log(error.message)
-  }
-})
+	try {
+		await sequelize.sync({ force: false });
+		// console.log(`Server on listening http://localhost:${PORT}`)
+		console.log(`Server on listening in PORT ${PORT}`);
+	} catch (error) {
+		console.log(error.message);
+	}
+});
